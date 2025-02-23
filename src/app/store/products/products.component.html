@@ -1,0 +1,182 @@
+<div class="container my-2 px-2">
+  <div class="row mt-4">
+    <div class="col-4">
+      <h1>Add product</h1>
+      <form #form="ngForm" (submit)="save()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            [(ngModel)]="product.productName"
+            required
+            id="name"
+            #name="ngModel"
+            placeholder="Name Required"
+          />
+          <span
+            class="form-text text-danger"
+            *ngIf="!name.valid && name.touched"
+          >
+            Name Required
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="price">Price</label>
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            [(ngModel)]="product.price"
+            required
+            min="0"
+            id="price"
+            #price="ngModel"
+            placeholder="Price Required"
+          />
+          <span
+            class="form-text text-danger"
+            *ngIf="!price.valid && price.touched"
+          >
+            Price Required
+          </span>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="product.discontinued"
+            id="discontinued"
+            name="discontinued"
+          />
+          <label class="form-check-label" for="discontinued">
+            Discontinued
+          </label>
+        </div>
+        <div class="form-group">
+          <label for="category">Category</label>
+          <select
+            class="form-select"
+            [(ngModel)]="product.categoryId"
+            name="category"
+            required
+            id="category"
+          >
+            <option [value]="null" disabled>Select a category</option>
+            <option
+              *ngFor="let category of categories"
+              [value]="category.idCategory"
+            >
+              {{ category.categoryName }}
+            </option>
+          </select>
+        </div>
+        <!-- Display the name of the selected image -->
+        <div class="form-group" *ngIf="product.photoName">
+          <label for="imageName">Name of the selected image:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="imageName"
+            [(ngModel)]="product.photoName"
+            name="imageName"
+            readonly
+          />
+        </div>
+        <div class="mt-3">
+          <label for="image" class="form-label">Choose image</label>
+          <input
+            class="form-control"
+            type="file"
+            id="image"
+            (change)="onChange($event)"
+            accept="image/*"
+            #fileInput
+          />
+        </div>
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="form.invalid"
+        >
+          Accept
+        </button>
+        <button
+          type="button"
+          class="btn btn-warning"
+          *ngIf="product.idProduct !== 0"
+          (click)="cancelEdition()"
+        >
+          Cancel edition
+        </button>
+      </form>
+    </div>
+    <div class="col-8">
+      <p-table
+        [value]="products"
+        [paginator]="true"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        currentPageReportTemplate="{first} of {last} of a total of {totalRecords} products"
+        [rowsPerPageOptions]="[5, 10]"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Name</th>
+            <th></th>
+            <th>Price</th>
+            <th>Discontinued</th>
+            <th>Category</th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td>{{ product.productName }}</td>
+            <td><img src="{{ product.photoUrl }}" width="80" /></td>
+            <td>{{ product.price | number : "1.2-2" }} €</td>
+            <td>{{ product.discontinued ? "Sí" : "No" }}</td>
+            <td>{{ product.categoryName }}</td>
+            <td>
+              <p-button
+                icon="pi pi-pencil"
+                (click)="edit(product)"
+                styleClass="p-button-rounded p-button-warning"
+              ></p-button>
+              <p-button
+                icon="pi pi-trash"
+                (click)="confirmDelete(product)"
+                styleClass="p-button-rounded p-button-danger"
+              ></p-button>
+              <p-button
+                icon="pi pi-eye"
+                (click)="showImage(product)"
+                [disabled]="!product.photoUrl"
+                styleClass="p-button-rounded p-button-primary"
+              ></p-button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-confirmDialog></p-confirmDialog>
+      <p-dialog
+        header="Alert"
+        [(visible)]="visibleError"
+        [style]="{ width: '50vw' }"
+      >
+        <p>
+          {{ errorMessage }}
+        </p>
+      </p-dialog>
+      <p-dialog
+        header="{{ product.productName }}"
+        [(visible)]="visiblePhoto"
+        [style]="{ width: '30vw' }"
+      >
+        <img [src]="photo" alt="Product photo" class="img-fluid" />
+      </p-dialog>
+    </div>
+  </div>
+</div>
