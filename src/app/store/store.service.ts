@@ -63,7 +63,6 @@ export class StoreService {
   }
 
   updateProduct(product: IProduct): Observable<IProduct> {
-    console.log("Sending PUT request for product ID:", product.idProduct); 
     const formData = new FormData();
     formData.append('idProduct', product.idProduct.toString());
     formData.append('productName', product.productName);
@@ -73,7 +72,6 @@ export class StoreService {
     if (product.photo) {
       formData.append('photo', product.photo);
     }
-
     return this.http.put<IProduct>(`${this.urlAPI}products/${product.idProduct}`, formData, { headers: this.getHeaders() });
   }
 

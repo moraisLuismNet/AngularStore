@@ -110,7 +110,7 @@ export class CategoriesComponent implements OnInit {
     if (err.error && typeof err.error === 'object' && err.error.message) {
       this.errorMessage = err.error.message;
     } else if (typeof err.error === 'string') {
-      // Si `err.error` is a string, it is assumed to be the error message
+      // If `err.error` is a string, it is assumed to be the error message
       this.errorMessage = err.error;
     } else {
       // Handles the case where no useful error message is received
