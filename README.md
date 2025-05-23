@@ -12,6 +12,8 @@ export const environment = {urlAPI: 'https://localhost:7177/api/'};
 export const environment = {urlAPI: 'https://localhost:44342/api/'};
 ```
 
+[DeepWiki moraisLuismNet/AngularStore](https://deepwiki.com/moraisLuismNet/AngularStore)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
