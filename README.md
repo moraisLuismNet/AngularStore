@@ -1,5 +1,53 @@
 ## AngularStore
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+
+**AngularStore** is a web application that provides a user interface for managing categories and products. The application requires users to log in to access its features (Category Management and Product Management). This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+
+![AngularStore](img/UML.png)
+
+AngularStore/  
+├───app/  
+│   ├───guards/  
+│   │   └───auth-guard.service.ts  
+│   ├───interfaces/  
+│   │   └───login.interface.ts  
+│   ├───services/  
+│   │   └───app.service.ts  
+│   ├───shared/  
+│   │   ├───navbar/  
+│   │   │   ├───navbar.component.html  
+│   │   │   └───navbar.component.ts  
+│   │   └───shared.module.ts  
+│   ├───start/  
+│   │   ├───login/  
+│   │   │   ├───login.component.css  
+│   │   │   ├───login.component.html  
+│   │   │   └───login.component.ts  
+│   │   ├───not-found/  
+│   │   │   ├───not-found.component.css  
+│   │   │   ├───not-found.component.html  
+│   │   │   └───not-found.component.ts  
+│   │   └───start.module.ts  
+│   ├───store/  
+│   │   ├───categories/  
+│   │   │   ├───categories.component.html  
+│   │   │   └───categories.component.ts  
+│   │   ├───products/  
+│   │   │   ├───products.component.html  
+│   │   │   └───products.component.ts  
+│   │   ├───store.component.html  
+│   │   ├───store.component.ts  
+│   │   ├───store.interfaces.ts  
+│   │   ├───store.module.ts  
+│   │   ├───store.service.ts  
+│   │   └───store-routing.module.ts  
+│   ├───app.component.html  
+│   ├───app.component.ts  
+│   ├───app.module.ts  
+│   └───app-routing.module.ts  
+├───environments/  
+│   ├───environment.development.ts  
+│   └───environment.ts  
+└───angular.json  
 
 ![AngularStore](img/1.png)
 ![AngularStore](img/2.png)
