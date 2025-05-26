@@ -57,7 +57,6 @@ AngularStore/
 
 ```
 export const environment = {urlAPI: 'https://localhost:7177/api/'};
-export const environment = {urlAPI: 'https://localhost:44342/api/'};
 ```
 
 [DeepWiki moraisLuismNet/AngularStore](https://deepwiki.com/moraisLuismNet/AngularStore)
